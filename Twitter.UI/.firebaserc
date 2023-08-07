@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "twitter-clone-79cc6": {
+      "hosting": {
+        "AngIntro": [
+          "twitter-clone-79cc6"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "twitter-clone-79cc6"
+  }
+}

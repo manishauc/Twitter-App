@@ -1,0 +1,201 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+<!-- sidebar starts -->
+<div class="box">
+<div class="sidebar">
+  <h1><b>&nbsp;&nbsp;&nbsp;&nbsp;<img src="assets/twitter.png" alt="logo" mat-card-avatar></b></h1>
+  <a routerLink="/home">
+  <div class="sidebarOption active">
+    <span class="material-icons">home</span>
+    <h2>Home</h2>
+   </div>
+  </a>
+   <a routerLink="/profile">
+   <div class="sidebarOption active">
+
+    <span class="material-icons">perm_identity</span>
+    <h2>Profile</h2>
+
+   </div>
+  </a>
+</div>
+
+<!-- sidebar ends -->
+
+
+<!-- feed starts -->
+<div class="feed">
+  <div class="feed__header">
+    <h2><b>Profile</b></h2>
+  </div>
+  <div class="profile_background"></div>
+
+  <div class="profile_card">
+    <!-- <br> -->
+    <div class="profile_img_container">
+      <img src="assets/profile.jpg" alt="John" class="profile_img">
+      <h1 >{{userData?.name}}</h1>
+    </div>
+    <div class="profile_card_Deatils">
+      <label>Followers {{userData?.followersCount??0}} </label><label style="margin-left: 10%;"> Followings {{userData?.following??0}}</label>
+    </div>
+  </div>
+
+  <div class="login__header__right" >
+    <mat-card class="login__header__right__card">
+        <mat-card-content class="login__header__right__card__content">
+          <form [formGroup]="registerForm" class="login-form" (ngSubmit)="updateUserdata()">
+            <span style="margin-left: auto;opacity: 50%;" (click)="updateEdit(true)" class="controls_container material-icons">edit</span>
+            <div class="controls_container">
+              <label class="form_label">Name</label>
+              <label *ngIf="!enableEdit" class="form_controls">{{userData?.name}}</label>
+              <input *ngIf="enableEdit" class="form_controls" value={{userData?.name}} type="text" formControlName="name" id="name" placeholder="Name" required>
+            </div>
+
+            <div class="controls_container">
+              <label class="form_label">Email</label>
+              <label class="form_controls">{{userData?.email}}</label>
+            </div>
+
+            <div class="controls_container">
+              <label class="form_label">BIO</label>
+              <label *ngIf="!enableEdit" class="form_controls">{{userData.bio}}</label>
+              <input *ngIf="enableEdit" class="form_controls" value={{userData?.bio}} type="textarea" formControlName="bio" placeholder="Bio" required>
+            </div>
+            <br>
+            <div class="error-message" *ngIf="error">
+              {{error}}
+            </div>
+            <div  *ngIf="enableEdit" class="buttons_css">
+              <button type="submit" class="login-button">Update</button>
+              <button type="button" (click)="updateEdit(false)" class="login-button login-button-class" >Cancle </button>
+            </div>
+            </form>
+         <br>
+        </mat-card-content>
+    </mat-card>
+
+  </div>
+
+
+
+  <div class="b1" *ngFor="let tweet of tweets">
+        <div class="post__avatar">
+          <img src="assets/profile.jpg" alt="avatar" mat-card-avatar />
+        </div>
+         <div class="post__body">
+          <div class="post__header">
+            <div class="post__headerText">
+              <h3><b>{{ tweet.username }}
+                <span class="post__headerSpecial">
+                  <span class="material-icons post__badge">verified</span>@{{ tweet.username?.split(' ')[0].toLowerCase() }}
+                </span>
+              </b>
+              </h3>
+            </div>
+            <div class="post__headerDescription" style="max-width: 700px;">
+              <p>{{ tweet.content }}</p>
+            </div>
+          </div>
+          <!-- <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZXhlcmNpc2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" /> -->
+         
+            </div> 
+          <hr>
+      </div>
+</div>
+
+
+<!-- Profile starts -->
+
+
+
+
+
+<!-- Profile ends -->
+
+
+
+
+
+
+<!-- widgets starts -->
+
+
+<div class="widgets">
+  <div class="widgets__input">
+    <span class="material-icons widgets__searchIcon">search</span>
+    <!-- <input type="text" placeholder="Search Twitter"> -->
+
+   <input type="text" placeholder="Search Twitter" (click)="showSearchHint = true" (blur)="showSearchHint = false" [(ngModel)]="searchQuery">
+
+  </div>
+  <div class="search-hint-overlay" *ngIf="showSearchHint && !searchQuery">
+    <div class="search-hint">
+      Try searching for people, topics, or keywords
+    </div>
+  </div>
+  <div class="widgets__widgetContainer">
+    <div class="b3">
+      <h2><b>Get Verified</b></h2>
+     <p><b>&nbsp;&nbsp;&nbsp;Subscribe to unlock new features</b></p>
+      <button><b>Get Verified</b></button>
+    </div>
+  </div>
+
+    <div class="widgets__widgetContainer">
+
+    <div class="b4">
+     &nbsp;&nbsp;<h2><b>What's happening</b></h2><br>
+    </div>
+
+<div class="b8">
+  &nbsp; Trending in india <span class="material-icons" style="margin-left: 210px;">more_horiz</span>
+ <br>&nbsp;<a href="https://twitter.com/narendramodi" style="color: black;"><b>#Narendra Modi</b></a><br>
+  &nbsp;&nbsp; 37K Tweets
+</div>
+<br>
+
+<div class="b9">
+  &nbsp; Politics in india <span class="material-icons" style="margin-left: 220px;">more_horiz</span>
+ <br>&nbsp;<a href="https://twitter.com/INCIndia" style="color: black;"><b>#Congress</b></a><br>
+  &nbsp;&nbsp; 130K Tweets
+</div>
+
+<br>
+<div class="b10">
+  &nbsp;  Sports . trending  <span class="material-icons" style="margin-left: 210px;">more_horiz</span>
+ <br>&nbsp;<a href="https://twitter.com/FabrizioRomano" style="color: black;"><b>#Fabrizio Romano</b></a><br>
+  &nbsp;&nbsp; 27.8K Tweets
+</div>
+<br>
+
+<div class="b11">
+  &nbsp; Trending in art <span class="material-icons" style="margin-left: 225px;">more_horiz</span>
+ <br>&nbsp;<a href="https://twitter.com/WeirdMedieval" style="color: black;"><b>#weird medieval guys</b></a><br>
+  &nbsp;&nbsp; 2,655 Tweets
+</div>
+  </div>
+
+<!-- widgets ends -->
+</div>
+
+    <footer>
+        
+        <div class="error-msg2" id="error-msg2" *ngIf="errorMsg" style="margin: 40px; position: fixed;right: 5px;bottom: 1px;z-index: 1; display:block;font-size: 20px;">
+                <div class="alert alert-danger"  style="padding:25px">
+                    <a href="#" class="close" id="close" onclick="document.getElementById('error-msg2').classList.toggle('hidden');" aria-label="close" style="text-decoration: none;position: absolute;top: 12px;right: 6px;opacity: 0.4;">&times;</a>
+                    <strong>Error !</strong> {{errorMsg}}
+                </div>
+          </div>
+
+       <div class="success-msg2" id="success-msg2" *ngIf="success" style="margin: 40px; position: fixed;right: 5px;bottom: 1px;z-index: 1; display:block;font-size: 20px;">
+                <div class="alert alert-success"  style="padding:25px">
+                    <a href="#" class="close" id="close" onclick="document.getElementById('success-msg2').classList.toggle('hidden');"  aria-label="close" style="text-decoration: none;position: absolute;top: 12px;right: 6px;opacity: 0.4;">&times;</a>
+                    <strong>Sucess !</strong> {{success}}
+                </div>
+          </div>
+
+    </footer>
+
+

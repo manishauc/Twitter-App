@@ -1,0 +1,164 @@
+@import "src/styles";
+
+.login-container{
+    background-color: #f5f0f1;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.login__header{
+    height: 70vh;
+    width: 100%;
+    display: flex;
+    gap: 90px;
+    align-items: center;
+    justify-content: center;
+}
+    .login__header__left{
+        width: 580px;
+        padding-right: 32px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+        img{
+            height: 300px;
+            margin-right: 400px;
+            margin-top: 100px;
+            width: 500px;
+            
+        }
+        .h2{
+            font-size: 28px;
+            font-weight: normal;
+            line-height: 32px;
+            width: 500px;
+        } /* left ends here */
+    
+    
+    
+        .login__header__right__card{
+            height: 400px;
+            width: 400px;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+        .login__header__right__card__content{
+                padding: 5px;
+                display: flex;
+                flex-direction: column;
+            }
+                
+            .login-form{
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+                input{
+                    padding:15px;
+                    outline: none;
+                    border: 1px solid lightgrey;
+                    border-radius: 5px;
+                   
+                }
+                    .placeholder{
+                        font-size: 16px;
+                        font-weight: normal;
+                    }
+                    .create-account{
+                        margin-bottom: 40px;
+                        margin-right: 20px;
+                    }
+                    .login-button{
+                        margin-left: 50px;
+                    }
+                    a{
+                        margin-left: 120px;
+                    }
+                   hr{
+                    border: 1px solid black;
+                   }
+                
+
+                .login-button{
+                    background-color: blue;
+                    padding: 8px 120px;
+                    outline: none;
+                    border: none;
+                    border-radius: 7px;
+                    color:white;
+                    font-size: 18px;
+                    font-weight: bold;
+                  margin-top: 200px;
+                    cursor: pointer;
+                    margin-left: 40px;
+                    position: fixed;
+                    
+
+                }
+
+/*login form ends*/
+
+.a{
+    text-decoration:none ;
+    color: blue;
+    text-align: center;
+    border-bottom: 1px solid lightgray;
+  margin-top: 100px;
+    padding-bottom: 20px;
+    cursor: pointer;
+    position: fixed;
+   
+}
+
+.create-account{
+    background-color:green;
+    display: inline-block;
+    align-self: center;
+    outline: none;
+    border: none;
+    border-radius: 7px;
+    padding: 10px 30px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 320px;
+    margin-left: 30px;
+    position: fixed;
+    
+}
+ /*card ends  here*/
+        
+         .tagline{
+            text-align: center;
+            letter-spacing: 0.7px;
+
+        }
+     
+   .login__fotter{
+     height: 30vh;
+    align-self: flex-end;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+
+}
+
+
+.error-message {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .error-required {
+    font-weight: bold;
+  }
+  

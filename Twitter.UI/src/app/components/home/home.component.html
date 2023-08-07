@@ -1,0 +1,303 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+  <!-- sidebar starts -->
+  <div class="box">
+      <div class="sidebar">
+        <h1><b>&nbsp;&nbsp;&nbsp;&nbsp;<img src="assets/twitter.png" alt="logo" mat-card-avatar></b></h1>
+        <a routerLink="/home">
+        <div class="sidebarOption active">
+          <span class="material-icons">home</span>
+          <h2>Home</h2>
+         </div>
+        </a>
+         <a routerLink="/profile">
+         <div class="sidebarOption active">
+          
+          <span class="material-icons">perm_identity</span>
+          <h2>Profile</h2>
+          
+         </div>
+        </a>
+      </div>
+  <!-- sidebar ends -->
+
+
+  <!-- feed starts -->
+  <div class="feed">
+    <div class="feed__header">
+      <h2><b>Home</b></h2>
+    </div>
+
+    <!-- tweetbox starts -->
+    <div class="tweetBox">
+        <div class="tweetBox__input">
+          <img src="assets/profile.jpg" alt="avatar" mat-card-avatar  [src]="userProfilePhoto" />
+          <input type="text"  [(ngModel)]="tweetMessage" placeholder="Whats happening?" maxlength="280" />
+          <div class="error-message" *ngIf="error">{{error}}</div>
+        </div>
+        <div class="t1">
+         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <mat-icon color="accent">videocam</mat-icon>
+            <span>Live Video</span>
+            &nbsp; &nbsp; &nbsp; &nbsp; <mat-icon color="primary">photo_album</mat-icon>
+            <span>Photo/Video</span>
+            &nbsp; &nbsp; &nbsp; &nbsp;<mat-icon color="warn">mood</mat-icon>
+            <span>Feeling/Activity</span>
+            <button class="tweetBox__tweetButton"  (click)="postTweet()">Tweet</button>
+        </div>
+    </div>
+
+   <!-- tweetbox ends -->
+
+
+    <!-- post starts -->
+    <div>
+     <!--  <div class="b1">
+    <div class="post__avatar">
+      <img src="assets/profile.jpg" alt="avatar" mat-card-avatar />
+    </div>
+     <div class="post__body">
+      <div class="post__header">
+        <div class="post__headerText">
+          <h3><b>Shweta Kale
+            <span class="post__headerSpecial">
+              <span class="material-icons post__badge">verified</span>@shweta
+            </span>
+          </b>
+          </h3>
+        </div>
+        <div class="post__headerDescription">
+          <p>Exercise is physical activity that we have to perform on a repetitive basisfor relaxing <br>
+             our body and taking away all the mental stress.It is important to do regular  exercise.
+            <br>When you do this on a daily basis you become fit both physically and mentally.
+            <br>Moreover, not exercising daily can make a person susceptible to different diseases.
+            <br>Thus, just like eating food daily, we must also exercise daily. <a href="#">#doeveryday</a> </p>
+        </div>
+      </div>
+      <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZXhlcmNpc2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" />
+      <div class="post__footer">
+        <span class="material-icons">favorite_border</span>
+        <span class="material-icons"> chat_bubble_outline </span>
+        <span class="material-icons">repeat</span>
+        <span class="material-icons">publish</span>
+
+      </div>
+    </div> 
+    <hr>
+    </div> -->
+      <div class="b1" *ngFor="let tweet of tweets">
+        <div class="post__avatar">
+          <img src="assets/profile.jpg" alt="avatar" mat-card-avatar />
+        </div>
+         <div class="post__body">
+          <div class="post__header">
+            <div class="post__headerText">
+              <h3><b>{{ tweet.username }}
+                <span class="post__headerSpecial">
+                  <span class="material-icons post__badge">verified</span>@{{ tweet.username?.split(' ')[0].toLowerCase() }}
+                </span>
+              </b>
+              </h3>
+            </div>
+            <div class="post__headerDescription" style="max-width: 700px;">
+              <p>{{ tweet.content }}</p>
+            </div>
+          </div>
+          <!-- <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZXhlcmNpc2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" /> -->
+          <div class="post__footer">
+              <span class="material-icons" [ngStyle]="{color:tweet.likes>0?'red':'black'}" (click)="likePost(tweet)">favorite_border</span>
+              <span class="like-count">{{ tweet.likes }}</span>
+              <span class="material-icons" (click)="promptComment(tweet)"> chat_bubble_outline </span>
+              <span class="comment-count">{{ tweet.comments.length }}</span>
+            
+              <span class="material-icons">repeat</span>
+
+              <span class="material-icons" [ngStyle]="{color:tweet.retweets>0?'skyblue':'black'}" (click)="RetweetPost(tweet)">publish</span>
+              <span class="like-count">{{ tweet.retweets }}</span>
+               <div class="flex-basis-100" >
+                <h3 class="comment-alignment" (click)="toggleComment(tweet.content)">Comments 
+                  <span *ngIf="!showComment " class="material-icons"> arrow_drop_down  </span>
+                  <span *ngIf="showComment && showCommentid == tweet.content" class="material-icons"> arrow_drop_up  </span>
+                </h3>
+                <div *ngIf="showComment && showCommentid == tweet.content">
+                    <ul>
+                      <li *ngFor="let comment of tweet.comments">{{comment}}</li>
+                    </ul>
+                </div>
+              </div>
+
+              </div>
+            </div> 
+          <hr>
+      </div>
+
+
+    </div>
+
+  <!-- <div class="b1">
+    <div class="post__avatar">
+      <img src="assets/profile.jpg" alt="avatar" mat-card-avatar />
+    </div>
+    <div class="post__body">
+      <div class="post__header">
+        <div class="post__headerText">
+          <h3><b>Shweta Kale
+            <span class="post__headerSpecial">
+              <span class="material-icons post__badge">verified</span>@Shweta
+            </span>
+          </b>
+          </h3>
+        </div>
+        <div class="post__headerDescription">
+          <p>In order to conserve nature, we must take drastic steps right away to prevent any further damage.
+            <br>The most important step is to prevent deforestation at all levels.<a href="#">#savelife</a>  </p>
+        </div>
+      </div>
+      <img src="https://images.pexels.com/photos/15286/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+      <div class="post__footer">
+        <span class="material-icons">favorite_border</span>
+        <span class="material-icons"> chat_bubble_outline </span>
+        <span class="material-icons">repeat</span>
+
+        <span class="material-icons">publish</span>
+
+      </div>
+    </div>
+    </div> -->
+
+  <!-- here -->
+  <hr>
+  <!--   <div *ngFor="let tweet of tweets" class="b1">
+      <div class="post__avatar">
+        <img src="assets/profile.jpg" alt="avatar" mat-card-avatar />
+      </div>
+      <div class="post__body">
+        <div class="post__header">
+          <div class="post__headerText">
+            <h3>
+              <b>{{ tweet.username }}
+                <span class="post__headerSpecial">
+                  <span class="material-icons post__badge">verified</span>@{{ tweet.username?.split(' ')[0].toLowerCase() }}
+                </span>
+              </b>
+            </h3>
+          </div>
+          <div class="post__headerDescription">
+            <p>{{ tweet.content }}</p>
+          </div>
+        </div>
+        <img *ngIf="tweet.image" src="{{ tweet.image }}" />
+        <div class="post__footer">
+          <span class="material-icons" [ngStyle]="{color:tweet.likes>0?'red':'black'}" (click)="likePost(tweet)">favorite_border</span>
+          <span class="like-count">{{ tweet.likes }}</span>
+          <span class="material-icons" (click)="promptComment(tweet)"> chat_bubble_outline </span>
+          <span class="comment-count">{{ tweet.comments.length }}</span>
+
+          <span class="material-icons">repeat</span>
+          <span class="material-icons">publish</span>
+
+          <div class="flex-basis-100" >
+            <h3 class="comment-alignment" (click)="toggleComment(tweet.content)">Comments <span *ngIf="!showComment " class="material-icons"> arrow_drop_down  </span><span *ngIf="showComment && showCommentid == tweet.content" class="material-icons"> arrow_drop_up  </span></h3>
+            <div *ngIf="showComment && showCommentid == tweet.content">
+              <ul>
+                <li *ngFor="let comment of tweet.comments">{{comment}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div> -->
+
+
+  </div>
+  <!-- post ends -->
+
+
+    <!-- widgets starts -->
+    <div class="widgets">
+      <div class="widgets__input">
+        <span class="material-icons widgets__searchIcon">search</span>
+        <!-- <input type="text" placeholder="Search Twitter"> -->
+
+       <input type="text" placeholder="Search Twitter" (click)="showSearchHint = true" (blur)="showSearchHint = false" [(ngModel)]="searchQuery">
+
+      </div>
+      <div class="search-hint-overlay" *ngIf="showSearchHint && !searchQuery">
+        <div class="search-hint">
+          Try searching for people, topics, or keywords
+        </div>
+      </div>
+      <div class="widgets__widgetContainer">
+        <div class="b3">
+          <h2><b>Get Verified</b></h2>
+         <p><b>&nbsp;&nbsp;&nbsp;Subscribe to unlock new features</b></p>
+          <button><b>Get Verified</b></button>
+        </div>
+      </div>
+
+        <div class="widgets__widgetContainer">
+
+        <div class="b4">
+         &nbsp;&nbsp;<h2><b>What's happening</b></h2><br>
+        </div>
+
+    <div class="b8">
+      &nbsp; Trending in india <span class="material-icons" style="margin-left: 210px;">more_horiz</span>
+     <br>&nbsp;<a href="https://twitter.com/narendramodi" style="color: black;"><b>#Narendra Modi</b></a><br>
+      &nbsp;&nbsp; 37K Tweets
+    </div>
+    <br>
+
+    <div class="b9">
+      &nbsp; Politics in india <span class="material-icons" style="margin-left: 220px;">more_horiz</span>
+     <br>&nbsp;<a href="https://twitter.com/INCIndia" style="color: black;"><b>#Congress</b></a><br>
+      &nbsp;&nbsp; 130K Tweets
+    </div>
+
+    <br>
+    <div class="b10">
+      &nbsp;  Sports . trending  <span class="material-icons" style="margin-left: 210px;">more_horiz</span>
+     <br>&nbsp;<a href="https://twitter.com/FabrizioRomano" style="color: black;"><b>#Fabrizio Romano</b></a><br>
+      &nbsp;&nbsp; 27.8K Tweets
+    </div>
+    <br>
+
+    <div class="b11">
+      &nbsp; Trending in art <span class="material-icons" style="margin-left: 225px;">more_horiz</span>
+     <br>&nbsp;<a href="https://twitter.com/WeirdMedieval" style="color: black;"><b>#weird medieval guys</b></a><br>
+      &nbsp;&nbsp; 2,655 Tweets
+    </div>
+      </div>
+
+    <!-- widgets ends -->
+    </div>
+
+
+    <footer>
+        
+        <div class="error-msg2" id="error-msg2" *ngIf="errorMsg" style="margin: 40px; position: fixed;right: 5px;bottom: 1px;z-index: 1; display:block;font-size: 20px;">
+                <div class="alert alert-danger"  style="padding:25px">
+                    <a href="#" class="close" id="close" onclick="document.getElementById('error-msg2').classList.toggle('hidden');" aria-label="close" style="text-decoration: none;position: absolute;top: 12px;right: 6px;opacity: 0.4;">&times;</a>
+                    <strong>Error !</strong> {{errorMsg}}
+                </div>
+          </div>
+
+       <div class="success-msg2" id="success-msg2" *ngIf="success" style="margin: 40px; position: fixed;right: 5px;bottom: 1px;z-index: 1; display:block;font-size: 20px;">
+                <div class="alert alert-success"  style="padding:25px">
+                    <a href="#" class="close" id="close" aria-label="close" onclick="document.getElementById('success-msg2').classList.toggle('hidden');"  style="text-decoration: none;position: absolute;top: 12px;right: 6px;opacity: 0.4;">&times;</a>
+                    <strong>Sucess !</strong> {{success}}
+                </div>
+          </div>
+
+    </footer>
+
+
+
+
+
+
+
+
+
+

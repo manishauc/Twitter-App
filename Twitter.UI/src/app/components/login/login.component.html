@@ -1,0 +1,58 @@
+<div class="login-container">
+  <header class="login__header">
+<div class="login__header__left">
+<img src="assets/twitter-logo.png" alt="logo">
+<h2>Twitter helps you connect and share your  <br>
+  thoughts with the people in your life.</h2>
+</div>
+
+<div class="login__header__right" >
+  <mat-card class="login__header__right__card">
+      <mat-card-content class="login__header__right__card__content">
+          <form [formGroup]="loginForm" class="login-form" (ngSubmit)="login()">
+
+              <input type="text" formControlName="email" placeholder="Email address or phone number" required>
+              <div *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)">
+                <div *ngIf="loginForm.controls['email'].errors['required']" class="error-message error-required">Email is required</div>
+                <div *ngIf="loginForm.controls['email'].errors['email']" class="error-message">Invalid email format</div>
+              </div>
+
+              <input type="password" formControlName="password" placeholder="Password" required>
+              <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
+                <div *ngIf="loginForm.controls['password'].errors['required']" class="error-message error-required">Password is required</div>
+              </div>
+
+              <button type="submit" class="login-button">Log in</button>
+            </form>
+
+
+
+
+       <br><a href="#" style="color: blue; margin-top: 270px;position: fixed;">Forgotten account?</a>
+          <hr>
+          <button class="create-account" (click)="openRegister()">Create New Account</button>
+      </mat-card-content>
+  </mat-card>
+
+  <br><P class="tagline"><strong>Create a Page</strong>  for a celebrity, brand or business.</P>
+
+</div>
+
+  </header>
+<footer>
+<div class="error-msg2" id="error-msg2" *ngIf="errorMsg" style="margin: 40px; position: fixed;right: 5px;bottom: 1px;z-index: 1; display:block;font-size: 20px;">
+            <div class="alert alert-danger"  style="padding:25px">
+                <a href="#" class="close" id="close" onclick="document.getElementById('error-msg2').classList.toggle('hidden');" aria-label="close" style="text-decoration: none;position: absolute;top: 12px;right: 6px;opacity: 0.4;">&times;</a>
+                <strong>Error !</strong> {{errorMsg}}
+            </div>
+      </div>
+
+   <div class="success-msg2" id="success-msg2" *ngIf="success" style="margin: 40px; position: fixed;right: 5px;bottom: 1px;z-index: 1; display:block;font-size: 20px;">
+            <div class="alert alert-success"  style="padding:25px">
+                <a href="#" class="close" id="close" aria-label="close" onclick="document.getElementById('success-msg2').classList.toggle('hidden');" style="text-decoration: none;position: absolute;top: 12px;right: 6px;opacity: 0.4;">&times;</a>
+                <strong>Sucess !</strong> {{success}}
+            </div>
+      </div>
+
+</footer>
+</div>

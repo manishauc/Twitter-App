@@ -1,0 +1,290 @@
+@import "src/styles";
+
+.sidebarOption{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+ .sidebarOption .material-icons{
+  padding: 20px;
+ }
+
+ .sidebarOption h2{
+  font-weight: 800;
+  font-size: 20px;
+  margin-right: 20px;
+ }
+ .sidebarOption:hover{
+  background-color: #e6ecf0;
+  border-radius: 30px;
+  color: #50b7f5;
+  transition: color 100ms ease-out;
+ }
+  .box{
+    display: flex;
+    height: 100vh;
+    max-width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 10px;
+  }
+
+  .sidebar{
+    border-right: 1px solid #e6ecf0;
+    flex: 0.2;
+    min-width: 250px;
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  /* feed */
+
+  .feed{
+    flex: 0.5;
+    border-right: 1px solid #e6ecf0;
+    min-width: fit-content;
+    overflow-y: scroll;
+  }
+
+  .feed__header{
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 100;
+    border: 1px solid #e6ecf0;
+    padding: 15px 20px;
+  }
+
+  .feed__header h2{
+    font-size: 20px;
+    font-weight: 800;
+  }
+  .feed::-webkit-scrollbar{
+    display: none;
+  }
+  .feed{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* tweet box */
+  .tweetBox{
+    padding-bottom: 10px;
+    border-bottom: 8px solid #e6ecf0;
+    padding-right: 10px;
+  }
+  .tweetBox form{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tweetBox__input{
+    display: flex;
+    padding: 20px;
+
+  }
+
+  .tweetBox__input input{
+    flex: 1;
+    margin-left: 20px;
+    font-size: 20px;
+    border: none;
+    outline: none;
+  }
+
+  .tweetBox__tweetButton{
+    background-color: #50b7f5;
+    border: none;
+    color: white;
+    font-weight: 900;
+    border-radius: 30px;
+    width: 80px;
+    height: 40px;
+    margin-top: 20px;
+    margin-left: 200px;
+  }
+
+  /* post */
+
+
+  .post{
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 1px solid #50b7f5;
+    padding-bottom: 10px;
+  }
+
+  .post__body img{
+    width: 650px;
+    object-fit: contain;
+    border-radius: 20px;
+  }
+
+  .post__footer{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+
+    margin-top: 10px;
+  }
+  .post__badge{
+    font-size: 14px !important;
+    color: #50b7f5;
+    margin-right: 5px;
+  }
+
+  .post__headerSpecial{
+    font-weight: 600;
+    font-size: 12px;
+    color: gray;
+
+  }
+  .post__headerText h3{
+   font-size: 15px;
+   margin-bottom: 5px;
+
+  }
+  .post__headerDescription{
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+  .post__body{
+    flex: 1;
+    padding: 10px;
+  }
+  .post__avatar{
+    padding: 10px;
+  }
+.b1{
+  display: flex;
+  border-bottom: 1px solid #eee;
+}
+
+.b4{
+  display: flex;
+}
+.b7:hover{
+  background-color: #e6ecf0;
+  border-radius: 15px;
+  color: gray;
+  transition: color 100ms ease-out;
+ }
+ .b8:hover{
+  background-color: #e6ecf0;
+  border-radius: 15px;
+  color:gray;
+  transition: color 100ms ease-out;
+ }
+ .b9:hover{
+  background-color: #e6ecf0;
+  border-radius: 15px;
+  color:gray;
+  transition: color 100ms ease-out;
+ }
+ .b10:hover{
+  background-color: #e6ecf0;
+  border-radius: 15px;
+  color: gray;
+  transition: color 100ms ease-out;
+ }
+
+ .b11:hover{
+  background-color: #e6ecf0;
+  border-radius: 15px;
+  color: gray;
+  transition: color 100ms ease-out;
+ }
+
+
+.b3 button{
+  border-radius: 15px;
+  height: 30px;
+  width: 120px;
+  color: white;
+  background-color: black;
+  margin-left: 10px;
+}
+.b3 h2{
+  margin-left: 10px;
+
+}
+.widgets{
+  flex: 0.3;
+
+}
+.widgets__input{
+  display: flex;
+  align-items: center;
+  background-color: #e6ecf0;
+  padding: 10px;
+  border-radius: 20px;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+.widgets__input input{
+  border: none;
+  background-color: #e6ecf0;
+  outline: none;
+}
+.widgets__searchIcon{
+  color: gray;
+}
+.widgets__widgetContainer{
+  margin-top: 15px;
+  margin-left: 20px;
+  padding: 5px;
+  background-color: #f5f8fa;
+  border-radius: 20px;
+}
+
+.search-hint-overlay {
+  position: relative;
+}
+
+.search-hint {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  height: 80px;
+  text-align: center;
+  overflow: auto;
+  margin-left: 50px;
+}
+.material-icons{
+  cursor: pointer;
+}
+
+.flex-basis-100{
+  flex-basis: 100%;
+}
+
+.comment-alignment{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

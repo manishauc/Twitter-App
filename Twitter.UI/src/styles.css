@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+*{
+    box-sizing: border-box;
+}
+html,body{height: 100%;}
+body{margin: 0%; font-family: Roboto, "Helventica Neue", sans-serif;}
+
+primary-button-color{
+    color: #1877F2;
+}
+succes-button-color{
+    color: #42872A;
+
+}
+
+header-color{
+    color: white;
+}
+body-color{
+    color: #F8F2F5;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+.alert-primary {
+  color: #270;
+  background-color: #DFF2BF;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 3px 3px 3px 3px;
+}
+
+.alert-danger {
+  color: #D8000C;
+  background-color: #FFBABA;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 3px 3px 3px 3px;
+}
