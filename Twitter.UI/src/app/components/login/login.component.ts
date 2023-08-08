@@ -13,8 +13,7 @@ export class LoginComponent implements OnInit{
   baseURL:string ;
   ngOnInit(): void {
    this.baseURL = window.sessionStorage.getItem('baseURL')
-   this.success = window.sessionStorage.getItem('success')
-   sessionStorage.removeItem('success')
+  
  }
 
 

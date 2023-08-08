@@ -50,7 +50,7 @@
             <div class="controls_container">
               <label class="form_label">Name</label>
               <label *ngIf="!enableEdit" class="form_controls">{{userData?.name}}</label>
-              <input *ngIf="enableEdit" class="form_controls" value={{userData?.name}} type="text" formControlName="name" id="name" placeholder="Name" required>
+             <input *ngIf="enableEdit" class="form_controls" [(ngModel)]=userData.name type="text" formControlName="name" id="name" placeholder="Name" required>
             </div>
 
             <div class="controls_container">
@@ -60,8 +60,8 @@
 
             <div class="controls_container">
               <label class="form_label">BIO</label>
-              <label *ngIf="!enableEdit" class="form_controls">{{userData.bio}}</label>
-              <input *ngIf="enableEdit" class="form_controls" value={{userData?.bio}} type="textarea" formControlName="bio" placeholder="Bio" required>
+              <label *ngIf="!enableEdit" class="form_controls">{{userData?.bio}}</label>
+              <input *ngIf="enableEdit" class="form_controls" id="userBio" [(ngModel)]=userData.bio type="textarea" formControlName="bio" placeholder="Bio" required>
             </div>
             <br>
             <div class="error-message" *ngIf="error">

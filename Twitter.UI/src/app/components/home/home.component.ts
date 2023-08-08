@@ -60,8 +60,8 @@ export class HomeComponent implements OnInit {
         console.error('Get User and his followings Tweet List:  failed!', error);
       }
     );
-
   }
+  
    //END :: GET FEEDS DATA
 
     //START :: GET USER NAME
@@ -86,29 +86,52 @@ export class HomeComponent implements OnInit {
   postTweet() {
       
     if (this.tweetMessage) {
-        const newTweet: Tweet = {...new Tweet(),
-            content: this.tweetMessage,
-            username:this.username,
-            //image: 'https://images.unsplash.com/your-image-url',
-            likes: 0,
-           comments: [],
-           retweets:0,
-        };
-        this.tweets.unshift(newTweet);
+        
+        
         const requestBody = {
-            content : this.tweetMessage
+            content : this.tweetMessage,
+
         };
         this.tweetMessage = ''; 
         // Call the API
         const apiUrl = `${this.baseURL}api/auth/users/${this.userid}/tweets`;
-        this.homeService.postRequest(apiUrl,requestBody);
+      //N  this.homeService.postRequest(apiUrl,requestBody);
+        // Set the headers (if required by your API)
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'accept': '*/*'
+      });
+
+      this.http.post(apiUrl, requestBody, { headers: headers }).subscribe(
+        (response: any) => {
+          const newTweet: Tweet = {...new Tweet(),
+                id:response.id,
+                content: this.tweetMessage,
+                username:this.username,
+                //image: 'https://images.unsplash.com/your-image-url',
+                likes: 0,
+               comments: [],
+               retweets:0,
+            }
+            console.log('Tweet successful!', response);
+            this.tweets.unshift(newTweet);
+        },
+        (error: any) => {
+            // Handle errors if the register fails
+            this.errorMsg = error.error.message;   
+            console.error('tweet failed!', error);   
+            
+        }
+      );
     }
+
   }
   //END  :: POST THE TWEET
 
 
   //START :: LIKE THE TWEET
   likePost(tweet: any) {
+    alert(tweet.id);
       let tweetId = tweet.id;
       const requestBody = {
          
@@ -122,20 +145,22 @@ export class HomeComponent implements OnInit {
     const apiUrl = `${this.baseURL}api/auth/likes/${tweetId}/${this.userid}`;
     //this.homeService.postRequest(apiUrl,requestBody); 
     this.http.post(apiUrl, requestBody, { headers: headers }).subscribe(
-      (response: any) => {
+        (response: any) => {
 
-          console.log('Like dislike successful!', response);
-          if(response.liked==true){
-             tweet.likes++;
-           }else if(response.liked==false){
-             tweet.likes--;
-           }
-      },
-      (error: any) => {
-          // Handle errors if the register fails
-          console.error('Like action failed!', error);      
-      }
-  );
+            console.log('Like dislike successful!', response);
+            if(response.liked==true){
+               tweet.likes++;
+             }else if(response.liked==false){
+               tweet.likes--;
+             }
+        },
+        (error: any) => {
+            // Handle errors if the register fails
+            this.errorMsg = error.error.message;   
+            console.error('Like action failed!', error);   
+            
+        }
+      );
 
   }
   //END :: LIKE THE TWEET
@@ -161,7 +186,8 @@ export class HomeComponent implements OnInit {
         },
         (error: any) => {
             // Handle errors if the register fails
-            console.error('Retweet action failed!', error);      
+            console.error('Retweet action failed!', error);    
+            this.errorMsg = error.error.message;  
         }
       );
   }

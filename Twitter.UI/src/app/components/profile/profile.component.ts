@@ -138,15 +138,9 @@ export class ProfileComponent implements OnInit {
   }
 
   updateEdit(val:boolean){
-    //alert(val);
- //   alert(this.registerForm.value.name);
-    //alert(this.userData.name);
+
     this.enableEdit = val;
-    //this.userData;
-    //this.registerForm.value.name = this.userData.name;
-  // this.us = this.userData.name;
-  //  this.userData.bio;
-    // $("userName").val(this.userData.name);
+
   }
 
 
